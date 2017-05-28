@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+*{margin:0; padding:0;}
+#div1{
+	width:100px; height:100px; 
+	background:#ccc; position:absolute;
+	left:0px; top:0px;
+}
+#div2{
+	width:100px; height:100px;
+	background:#ccc; position:absolute;
+	left:200px; top:0;
+}
+
+</style>
+</head>
+<body>
+
+<div id="div1">div1</div>
+<div id="div2">div2</div>
+
+
+
+   
+<script>
+
+function ToRed(id){
+	this.oDiv=document.getElementById(id);
+	this.oDiv.onclick=this.fnClick;
+}
+
+ToRed.prototype.fnClick=function(){
+	this.style.background='red';
+}
+
+new ToRed('div1');
+new ToRed('div2');
+	
+
+</script>
+</body>
+</html>
