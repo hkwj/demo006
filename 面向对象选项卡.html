@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+*{margin:0; padding:0;}
+#div1 div,#div2 div{
+	width:400px; height:200px;
+	border:1px solid red;
+	display:none;
+}
+.active{
+	background:yellow;
+}
+hr{
+	margin:10px 0;
+}
+
+</style>
+</head>
+<body>
+
+<div id="div1">
+	<input type="button" value="aaa" class="active">
+	<input type="button" value="bbb">
+	<input type="button" value="ccc">
+	<div style="display:block;">aaa</div>
+	<div>bbb</div>
+	<div>ccc</div>
+</div>
+<hr>
+<div id="div2">
+	<input type="button" value="aaa" class="active">
+	<input type="button" value="bbb">
+	<input type="button" value="ccc">
+	<div style="display:block;">aaa</div>
+	<div>bbb</div>
+	<div>ccc</div>
+</div>
+
+
+
+
+
+   
+<script>
+
+function Tab(id){
+	this.wrap=document.getElementById(id);
+	this.head=this.wrap.getElementsByTagName('input');
+	this.body=this.wrap.getElementsByTagName('div');
+	var _this=this;
+	for(var i=0; i<this.head.length; i++){
+		// this.head[i].index=i;
+		// this.head[i].onclick=function(){
+		// 	_this.fnClick(this.index);
+		// }
+
+
+		(function(index){
+			_this.head[i].onclick=function(){
+				_this.fnClick(index);
+			}
+		})(i)
+
+	}
+}
+
+
+Tab.prototype.fnClick=function(index){
+	for(var i=0; i<this.head.length; i++){
+		this.head[i].className='';
+		this.body[i].style.display='none';
+	}
+	this.head[index].className='active';
+	this.body[index].style.display='block';
+}
+
+
+	new Tab('div1');
+
+
+	
+
+</script>
+</body>
+</html>
