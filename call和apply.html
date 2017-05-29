@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+*{margin:0; padding:0;}
+
+
+</style>
+</head>
+<body>
+
+
+
+
+   
+<script>
+
+function callFn(a,b){
+	alert(a);
+	alert(b);
+	alert(this);
+}
+
+callFn.call(0,10,22);
+
+
+function applyFn(a,b){
+	alert(a);
+	alert(b);
+	alert(this);
+}
+
+applyFn.apply('00',[12,22]);
+
+</script>
+</body>
+</html>
