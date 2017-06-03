@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+*{margin:0; padding:0;}
+#wrap{
+	width:90%;
+	padding:5%;
+	min-width:320px;
+	background:#ccc;
+}
+input{
+	margin:1%;
+}
+input.text{
+	width:60%;
+	height:30px;
+	font-size:18px;
+}
+input.btn{
+	width:16%;
+	font-size:14px;
+	height:30px;
+}
+#btn{
+	margin-left:4%;
+}
+span{
+	width:16%;
+	height:30px;
+	display:inline-block;
+}
+
+</style>
+</head>
+<body>
+
+<div id="wrap">
+	<form action="">
+		<input type="text" class="text" name="phone" placeholder="请输入手机号码">
+		<input type="button" class="btn" id="btn" value="获取验证码">
+		<br>
+		<input type="password" class="text" name="password" placeholder="请输入密码">
+		<br>
+		<input type="text" class="text" name="check" placeholder="请输入验证码">
+		<br>
+		<input type="submit" class="btn" id="sub" value="提交">
+		
+	</form>
+</div>
+
+
+<script src="jquery-1.7.2.js"></script>
+<script>
+var telRe=/^1[34578]\d{9}$/;
+var passRe=/^\d{6}$/;
+
+//电话验证
+	$('input[name="phone"]').keyup(function(){
+		var bOk=telRe.test($(this).val());
+		if(!bOk){
+			$('#btn').css('background','red');
+		} else {
+			$('#btn').css('background','green');
+		}
+		if($(this).val()==""){
+			$('#btn').css('background','#ccc');
+		}
+
+	})
+
+//验证码btn动画特效
+var count=10;
+$('#btn').click(function(){
+	$(this).attr('disabled','disabled').val(10).css('background','#ccc');
+	var timer=setInterval(function(){
+		count--;
+		$('#btn').val(count);
+		if(count==0){
+			clearInterval(timer);
+			count=10;
+			$('#btn').removeAttr('disabled').val('获取验证码').css('background','green')
+		}
+	},1000)
+})
+
+
+//提交ajax 获取验证码
+$('#btn').click(function(){
+	$.ajax({
+		url:"data.json",
+		data:{
+			phoneNumber:Number($('input[name="phone"]').val()),
+		},//后台数据不是太会编写 没有接口文档 这个data我拿不准怎么写
+		success:function(arr){
+			for(var i=0; i<arr.length; i++){
+				if($('input[name="phone"]').val()==arr[i].phone){
+					alert(arr[i].yanzm);
+					return;
+				} 
+			}
+			alert('此电话未注册！');
+		},
+
+	})
+})
+
+
+//password 6位数字验证
+$('input[name="password"]').keyup(function(){
+		var bOk=passRe.test($(this).val());
+		if(!bOk){
+			$('form').find('span').remove();
+			$(this).after('<span style="color:red;">请输入6位密码</span>')
+		} else {
+			$('form').find('span').remove();
+			$(this).after('<span style="color:green;">ok</span>')
+		}
+		if($(this).val()==""){
+		   $('form').find('span').remove();
+			
+		}
+
+	})
+
+
+//填写完所有的input 提交验证 在手机号&&验证码&&密码全对情况下alert成功
+
+//参看data 知道所有的数据  填写正确的手机号 可以给出验证码 密码只能在data.json中寻找
+
+$('#sub').click(function(){
+
+	if(!telRe.test($('input[name="phone"]').val())){
+		alert('电话格式错误');
+		return false;
+	}
+	if(!passRe.test($('input[name="password"]').val())){
+		alert('密码格式错误');
+		return false;
+	}
+
+
+
+	$.ajax({
+		url:'data.json',
+		data:{
+			phoneNumber:Number($('input[name="phone"]').val()),
+			password:   Number($('input[name="password"]').val()),
+			yanzm:      Number($('input[name="check"]').val()),
+		},
+		success: function(arr){
+			//此时已经确定电话的正确
+			var phone_true=$('input[name="phone"]').val();
+			for(var i=0; i<arr.length; i++){
+				if(Number(phone_true)==arr[i].phone){
+					(arr[i].password==Number($('input[name="password"]').val())) && (arr[i].yanzm==Number($('input[name="check"]').val())) ? alert('成功登陆') : alert('密码或者验证码错误');
+				}
+			}
+			
+
+
+		}
+	})
+
+
+
+})
+
+
+
+</script>
+</body>
+</html> 
