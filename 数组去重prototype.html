@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: "微软雅黑", "张海山锐线体简";
+} 
+
+
+
+</style>
+</head>
+<body>
+
+<script>
+	Array.prototype.unique=function(){ 
+		//var len=this.length;
+		for(var i=0; i<this.length; i++){
+			for(var j=i+1;j<this.length; j++){
+				if(this[i]==this[j]){
+					this.splice(j--,1);
+				}
+			}
+		}
+		return this;
+	}
+
+	var arr=new Array(1,1,2,2,3,3,4,5,1,2,6,7);
+	arr.unique();
+	console.log(arr);
+
+
+	//如果 var len=this.length; 因为每次this.length 的值是
+	//变化的 splice  但是len是不变的  这是造成崩溃的原因
+</script>
+</body>
+</html>
