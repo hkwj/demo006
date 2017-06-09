@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+*{margin:0; padding:0;}
+div{
+	width:100px; height:100px; background:#ccc;
+}
+</style>
+</head>
+<body ng-app="index" ng-controller="showHideCtrl">
+
+<input type="button" value="显示隐藏" ng-click="a=!a">
+
+<div id="div1" ng-show="a"></div>
+
+   
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script>
+var app=angular.module('index',[]);
+
+app.controller('showHideCtrl',function($scope){
+	$scope.a=false;
+})
+
+</script>
+</body>
+</html> 
