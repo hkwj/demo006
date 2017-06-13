@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+
+
+</style>
+<script>
+
+window.onload=function(){
+	var oBtn=document.getElementById('btn1');
+	var oTxt=document.getElementById('txt1');
+	var oSelect=document.getElementById('select1');
+
+	oBtn.onclick=function(){
+		oTxt.value=oSelect.value;
+	}
+}
+
+</script>
+
+
+</head>
+<body>
+
+<input type="text" id="txt1">
+<select name="" id="select1">
+	<option value="bj">bj</option>
+	<option value="sh">sh</option>
+	<option value="hz">hz</option>
+</select>
+
+<input type="button" value="button" id="btn1">
+
+
+</body>
+</html> 
