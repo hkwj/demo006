@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+*{margin:0; padding:0; list-style:none;}
+p{
+	border:10px solid #ccc; background:#ffc;
+	width:400px; padding:20px; font-size:16px;
+	font-family:微软雅黑; margin:40px auto 0;
+}
+</style>
+
+
+
+</head>
+<body>
+<p><span>但最近，网络上出现了个别人散布的挑动性的言论，曲解国家相关政策，称所谓的“国办去年发布相关意见中支持‘商改住’”，并以此攻击北京等一线城市整治违规商住是不执行国办的意见，要求相关部门同意将包括个人已购商办在内的房屋变更为住宅性质。<br/>
+
+已购商办人群的合理利益应该得到保护。但这种言论散布者完全是恶意曲解国家的相关政策，散布不实言论，挑动已购商办群体的情绪，达到自己的目的。</span>……<a href="javascript:;">>>收缩</a></p>
+
+
+
+<script>
+
+var oP=document.getElementsByTagName('p')[0];
+var oSpan=oP.getElementsByTagName('span')[0];
+var oA=oP.getElementsByTagName('a')[0];
+var str=oSpan.innerHTML;
+var onOff=true;
+
+oA.onclick=function(){
+	if(onOff){
+		oSpan.innerHTML=str.substring(0,10);
+		oA.innerHTML='>>展开';
+	} else {
+		oSpan.innerHTML=str;
+		oA.innerHTML='>>收缩'
+	}
+	onOff=!onOff;
+}
+
+
+
+</script>
+</body>
+</html> 
