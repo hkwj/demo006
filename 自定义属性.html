@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+
+
+
+</style>
+
+</head>
+<body>
+
+<input type="button" value="000">
+<input type="button" value="111">
+<input type="button" value="222">
+
+
+<script>
+var aBtn=document.getElementsByTagName('input');
+var arr=['a','b','c','d'];
+
+for(var i=0; i<aBtn.length; i++){
+	aBtn[i].num=0;
+	aBtn[i].onclick=function(){
+		this.value=arr[this.num];
+		this.num++;
+		if(this.num===arr.length){
+			this.num=0;
+		}
+	}
+}
+
+
+
+
+
+
+</script>
+</body>
+</html> 
