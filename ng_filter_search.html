@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+
+</style>
+
+<script src="work/angular.js"></script>
+
+</head>
+
+<body ng-app="index" ng-controller="ctrl">
+
+<input type="text" value="" ng-model="search.name" />
+<ul>
+	<li ng-repeat="item in arr|filter:search">
+		{{item.name}}|||{{item.age}}
+	</li>
+</ul>
+
+
+
+
+<script>
+var app=angular.module('index',[]);
+app.controller('ctrl',function($scope){
+	$scope.arr=[
+	 	{name:"张三",age:50},
+	 	{name:"zns",age:20},
+	 	{name:"翠花",age:18},
+	 	{name:"豆腐花",age:30}
+	 ];
+	  
+})
+
+
+
+</script>
+</body>
+</html> 
