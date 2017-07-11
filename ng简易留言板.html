@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+a{
+	margin-left:10px;
+}
+</style>
+
+<script src="work/angular.js"></script>
+
+</head>
+
+<body ng-app="index" ng-controller="weiboCtrl">
+
+<input type="text" value="" ng-model="a" />
+<input type="button" value="留言" ng-click="sendMsg()"/>
+<div ng-show="!arr.length">暂无留言</div>
+<ul>
+	<li ng-repeat="item in arr">{{item.content}}
+		<a ng-click="remove($index);" href="javascript:;" >Del</a>
+	</li>
+</ul>
+
+
+<script>
+
+var app=angular.module('index',[]);
+app.controller('weiboCtrl',function($scope){
+	$scope.a='';
+	$scope.arr=[];
+
+	$scope.sendMsg=function(){
+		$scope.arr.unshift({content:$scope.a});
+	};
+
+	$scope.remove=function(index){
+		$scope.arr.splice(index,1);
+	};
+
+
+})
+
+
+
+</script>
+</body>
+</html> 
