@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+
+<style>
+#div1{
+	width:100px; height:100px; 
+	background:red; position:absolute;
+	left:0; top:10px;
+}
+#div2{
+	width:100px; height:100px; 
+	background:blue; position:absolute;
+	left:150px; top:140px;
+}
+
+</style>
+<script>
+window.onload=function(){
+	var oDiv1=document.getElementById('div1');
+	var oDiv2=document.getElementById('div2');
+
+	drag(oDiv1);
+
+function drag(obj){
+	obj.onmousedown=function(ev){
+		var ev=ev||event;
+		var disX=ev.clientX-this.offsetLeft;
+		var disY=ev.clientY-this.offsetTop;
+
+		obj.setCapture && obj.setCapture();
+
+		document.onmousemove=function(ev){
+			var ev=ev||event;
+			var L=ev.clientX-disX;
+			var T=ev.clientY-disY;
+
+			var L1=L;
+			var R1=L+obj.offsetWidth;
+			var T1=T;
+			var B1=T+obj.offsetHeight;
+
+			var L2=oDiv2.offsetLeft;
+			var R2=L2+oDiv2.offsetWidth;
+			var T2=oDiv2.offsetTop;
+			var B2=T2+oDiv2.offsetHeight;
+
+			if(R1<L2 || L1>R2 || B1<T2 || T1>B2){
+				oDiv2.style.background="blue";
+			} else {
+				oDiv2.style.background="yellow";
+			};
+
+			obj.style.left=L+'px';
+			obj.style.top=T+'px';
+		}
+
+		document.onmouseup=function(){
+			document.onmouseup=document.onmousemove=null;
+			obj.releaseCapture && obj.releaseCapture();
+		}
+		return false;
+	}
+}
+
+
+
+}
+</script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+
+
+</body>
+</html> 
