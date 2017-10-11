@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+
+<style>
+
+</style>
+<script>
+window.onload=function(){
+	var oUsername=document.getElementById('username');
+	var oLogin=document.getElementById('login');
+	var oDel=document.getElementById('del');
+
+	if(getCookie('username')){
+		oUsername.value=getCookie('username');
+	};
+
+	oLogin.onclick=function(){
+		alert('login success');
+		setCookie('username',oUsername.value,5)
+	};
+
+	oDel.onclick=function(){
+		removeCookie('username');
+		oUsername.value='';
+	};
+
+	function setCookie(key,value,t){
+		var oDate=new Date();
+		oDate.setDate(oDate.getDate()+t);
+		document.cookie=key+'='+value+';expires='+oDate.toGMTString();
+		//alert(typeof (document.cookie)); 
+		//string
+	};
+
+	function getCookie(key){
+		var arr=document.cookie.split('; ');
+		for(var i=0; i<arr.length; i++){
+			var tmpArr=arr[i].split('=');
+			if(tmpArr[0]==key){
+				return decodeURI(tmpArr[1]);
+			}
+		}
+	};
+
+	function remvoeCookie(key){
+		setCookie(key,'',-1);
+	}
+}
+
+
+</script>
+</head>
+<body>
+<input type="text" id="username" />
+
+<input type="button" value="login" id="login" />
+
+<input type="button" value="del" id="del">
+
+
+
+</body>
+</html> 
